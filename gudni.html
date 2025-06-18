@@ -13,8 +13,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #e2e8f0; /* Lighter blue-gray background */
             color: #374151; /* Dark gray text */
-            /* Adding a subtle gradient or pattern could be done here with more complex CSS,
-               but for simplicity and Tailwind's strengths, we stick to solid colors and shadows. */
         }
         .container-wrapper {
             max-width: 960px;
@@ -53,11 +51,24 @@
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02); /* Inner shadow for blocks */
         }
+        /* Hide content not selected */
+        .language-content {
+            display: none;
+        }
+        .language-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased">
     <div class="container-wrapper">
-        <!-- Header Section: Name, Contact Info, Professional Summary -->
+        <!-- Language Switcher -->
+        <div class="text-right mb-4">
+            <button id="lang-en" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mr-2 hover:bg-blue-700 transition duration-300 ease-in-out">English</button>
+            <button id="lang-it" class="bg-gray-400 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-500 transition duration-300 ease-in-out">Italiano</button>
+        </div>
+
+        <!-- Header Section: Name, Contact Info, Professional Summary (Common for both languages) -->
         <header class="text-center mb-10 pb-8 border-b-2 border-gray-300">
             <h1 class="text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">Guðni Baldur Gíslason</h1>
             <p class="text-lg text-gray-700 mb-5 flex justify-center flex-wrap">
@@ -65,7 +76,11 @@
                 <span class="inline-flex items-center mx-3 my-1"><svg class="icon w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg><a href="mailto:gudn3h@gmail.com" class="text-blue-600-custom hover:underline">gudn3h@gmail.com</a></span>
                 <span class="inline-flex items-center mx-3 my-1"><svg class="icon w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>Milan, Italy</span>
             </p>
-            <div class="text-left mt-6">
+        </header>
+
+        <!-- English Content -->
+        <div id="english-content" class="language-content active">
+            <header class="text-left mt-6">
                 <h2 class="text-3xl font-bold mb-4">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.76-1.39A6.002 6.002 0 0010 12a6.002 6.002 0 00-5.24-4.76A7 7 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9z" clip-rule="evenodd"></path></svg>
                     Professional Summary
@@ -76,173 +91,385 @@
                     technical project coordination. Seeking to leverage technical expertise and capabilities in a dynamic
                     role in Milan's event or IT sector.
                 </p>
-            </div>
-        </header>
+            </header>
 
-        <!-- Main Content Area -->
-        <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Skills Section -->
-            <section class="md:col-span-1">
-                <h2 class="text-2xl font-bold mb-4">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.16-1.47-1.16-1.85 0L9.44 5.37a1.532 1.532 0 01-2.286.948l-2.6-1.624a1 1 0 00-1.232.173l-.934.934a1 1 0 00-.173 1.232l1.624 2.6c.214.342-.086.782-.445.948L3.17 11.49c-1.16.38-1.16 1.47 0 1.85l2.21 1.054a1.532 1.532 0 01-.948 2.286l-1.624 2.6a1 1 0 00.173 1.232l.934.934a1 1 0 001.232.173l2.6-1.624a1.532 1.532 0 01.948-.445l1.054 2.21c.38 1.16 1.47 1.16 1.85 0l1.054-2.21a1.532 1.532 0 012.286-.948l2.6 1.624a1 1 0 001.232-.173l.934-.934a1 1 0 00.173-1.232l-1.624-2.6a1.532 1.532 0 01.445-.948l2.21-1.054c1.16-.38 1.16-1.47 0-1.85l-2.21-1.054a1.532 1.532 0 01-.445-.948l1.624-2.6a1 1 0 00-.173-1.232l-.934-.934a1 1 0 00-1.232-.173l-2.6 1.624a1.532 1.532 0 01-.948-.445L11.49 3.17zM10 11a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                    Skills
+            <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skills Section - English -->
+                <section class="md:col-span-1">
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.16-1.47-1.16-1.85 0L9.44 5.37a1.532 1.532 0 01-2.286.948l-2.6-1.624a1 1 0 00-1.232.173l-.934.934a1 1 0 00-.173 1.232l1.624 2.6c.214.342-.086.782-.445.948L3.17 11.49c-1.16.38-1.16 1.47 0 1.85l2.21 1.054a1.532 1.532 0 01-.948 2.286l-1.624 2.6a1 1 0 00.173 1.232l.934.934a1 1 0 001.232.173l2.6-1.624a1.532 1.532 0 01.948-.445l1.054 2.21c.38 1.16 1.47 1.16 1.85 0l1.054-2.21a1.532 1.532 0 012.286-.948l2.6 1.624a1 1 0 001.232-.173l.934-.934a1 1 0 00.173-1.232l-1.624-2.6a1.532 1.532 0 01.445-.948l2.21-1.054c1.16-.38 1.16-1.47 0-1.85l-2.21-1.054a1.532 1.532 0 01-.445-.948l1.624-2.6a1 1 0 00-.173-1.232l-.934-.934a1 1 0 00-1.232-.173l-2.6 1.624a1.532 1.532 0 01-.948-.445L11.49 3.17zM10 11a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        Skills
+                    </h2>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Event Technology & AV:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Conference Setup & Operation</li>
+                            <li>Live Streaming (OBS, Livestream Platform)</li>
+                            <li>Video Editing (DaVinci Resolve)</li>
+                            <li>Projectors, LED Walls, Mixing Consoles</li>
+                            <li>Microphones, Speaker Systems, ClearCom</li>
+                            <li>Digital Signage, DMX512, GrandMA2</li>
+                            <li>Rigging, Stage Management, Production Support</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">IT & Networking:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Cisco Switches (VLANs, Putty)</li>
+                            <li>Server Rack Installation</li>
+                            <li>Fiber Optics (Splicing, Installation)</li>
+                            <li>Network Configuration, Wi-Fi Management</li>
+                            <li>Windows Server, Windows OS (Image Creation)</li>
+                            <li>Microsoft Office, IT Support, Hardware Troubleshooting</li>
+                            <li>Cyberpower/APC Systems, CompTIA concepts</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Certifications:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Microsoft Certified Solutions Associate (MCSA)</li>
+                            <li>CompTIA (Course Completed)</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Tools & Software:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Putty, DaVinci Resolve, OBS</li>
+                            <li>Microsoft Office Suite, Google Workspace</li>
+                            <li>Various AV control software & Hardware</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Languages:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Icelandic (Native)</li>
+                            <li>English (C2 Proficient)</li>
+                            <li>Italian (B1)</li>
+                        </ul>
+                    </div>
+                    <div class="section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Soft Skills:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Problem-Solving</li>
+                            <li>Adaptability</li>
+                            <li>Team Leadership</li>
+                            <li>Communication</li>
+                            <li>Client/Speaker Relations</li>
+                            <li>Project Coordination</li>
+                            <li>Autonomous Work</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Experience & Education Sections - English -->
+                <section class="md:col-span-2">
+                    <!-- Experience Section - English -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.586l-1.707 1.707A2 2 0 0115 15.586V18a2 2 0 01-2 2H7a2 2 0 01-2-2v-2.414A2 2 0 014.293 13.707L2.586 12V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm-4 0a1 1 0 011-1h.01a1 1 0 110 2H6a1 1 0 01-1-1zm9-1a1 1 0 00-1 1v.01a1 1 0 102 0V9a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                        Experience
+                    </h2>
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Event Production (IT, AV, Production Lead)</h3>
+                        <p class="text-gray-600"><strong>Harpa Concert Hall and Conference Center</strong> | Reykjavík, Iceland</p>
+                        <p class="text-sm text-gray-500 mb-4">March 2022 – Present</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li><strong>Conference AV & IT Support:</strong> Provided end-to-end technical support for numerous high-profile international conferences (e.g., European Glaucoma Society, Nordic Public Health, Wellbeing Economy Forum), ensuring flawless execution of presentations, audio, and video.</li>
+                            <li>Optimized speaker presentations by troubleshooting technical issues, adjusting video formats, and reducing bitrates, ensuring smooth transitions and professional delivery.</li>
+                            <li>Configured and maintained Cisco switches via Putty, managing VLANs and ensuring robust network performance across the venue.</li>
+                            <li>Installed and managed Cyberpower APC emergency battery power units in server racks.</li>
+                            <li>Established and managed Wi-Fi networks within the venue using the Cisco system.</li>
+                            <li><strong>Live Stream & Video Production:</strong> Managed live streaming for key events (e.g., Loftslagsdagurinn, PHD Dissertation Defense), operating four Sony PTZ cameras via remote control and utilizing OBS/Livestream platforms.</li>
+                            <li>Produced and edited high-quality video content for website publishing using DaVinci Resolve, including conference sessions, meetings, and forums.</li>
+                            <li><strong>Light & Stage Technician / Production Manager:</strong> Rigged, connected, and patched lighting systems into GrandMA2 light tables, ensuring correct DMX settings and electrical configurations for concerts and conferences.</li>
+                            <li>Oversaw stage setups and technical changeovers for major events (e.g., European Film Awards, European Council Summit, Passenger Concert), leading teams and ensuring strict adherence to production schedules.</li>
+                            <li>Administered Windows Server for user and group management, including secure password handling.</li>
+                            <li>Setup and maintained computers for staff, installing office, getting staff into the right groups. This included both Macs and Windows Computers.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Optical Fiber Installation Specialist</h3>
+                        <p class="text-gray-600"><strong>Raflausnir</strong> | Reykjavík, Iceland</p>
+                        <p class="text-sm text-gray-500 mb-4">2017 – 2018</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li>Installed and configured optical fiber connections for residential and commercial buildings throughout Reykjavík.</li>
+                            <li>Performed precise fiber splicing, integrated fiber converters, and set up routers/TV converter boxes, ensuring full functionality and high-speed connectivity.</li>
+                            <li>Conducted quality checks and troubleshooting to guarantee reliable service delivery.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Technical Support Specialist</h3>
+                        <p class="text-gray-600"><strong>Tal</strong> | Reykjavík, Iceland</p>
+                        <p class="text-sm text-gray-500 mb-4">2010 – 2011</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li>Provided direct technical assistance to customers, resolving issues related to phone and internet services.</li>
+                            <li>Configured APN settings for various mobile platforms and troubleshoot router and Voice over IP (VoIP) problems.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Education & Certifications Section - English -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.394 2.08a1 1 0 00-.788 0L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08zM4.232 7.382l-.443.15-.353-.615-.436-.148.353-.615-.443-.15a.999.999 0 00-1.755.004L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" fill-rule="evenodd" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" clip-rule="evenodd"></path></svg>
+                        Education & Certifications
+                    </h2>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Microsoft Certified Solutions Associate (MCSA)</h3>
+                        <p class="text-gray-600"><strong>NTV</strong> | Reykjavík, Iceland</p>
+                        <p class="text-sm text-gray-500">November 2015</p>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Cinematography and Video Editing</h3>
+                        <p class="text-gray-600"><strong>Kvikmyndaskóli Íslands</strong> | Reykjavík, Iceland</p>
+                        <p class="text-sm text-gray-500">2008 – 2009</p>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Italian Language Course</h3>
+                        <p class="text-gray-600"><strong>ELLCI Milano Italian Language School</strong> | Milan, Italy</p>
+                        <p class="text-sm text-gray-500">February 2025 - December 2025</p>
+                    </div>
+
+                    <!-- Interests Section - English -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"></path></svg>
+                        Interests
+                    </h2>
+                    <div class="section-block">
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Computer Building</li>
+                            <li>Video Editing</li>
+                            <li>Hiking</li>
+                            <li>Reading</li>
+                            <li>Indoor Climbing</li>
+                            <li>Technology</li>
+                            <li>AI</li>
+                            <li>Stock Market</li>
+                            <li>Football</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+            <footer class="text-center mt-12 pt-8 border-t-2 border-gray-300">
+                <p class="text-gray-600">Looking for a dynamic role in Milan's event or IT sector.</p>
+                <a href="mailto:gudn3h@gmail.com" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                    Contact Me
+                </a>
+            </footer>
+        </div>
+
+        <!-- Italian Content -->
+        <div id="italian-content" class="language-content">
+            <header class="text-left mt-6">
+                <h2 class="text-3xl font-bold mb-4">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.76-1.39A6.002 6.002 0 0010 12a6.002 6.002 0 00-5.24-4.76A7 7 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9z" clip-rule="evenodd"></path></svg>
+                    Sommario Professionale
                 </h2>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Event Technology & AV:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Conference Setup & Operation</li>
-                        <li>Live Streaming (OBS, Livestream Platform)</li>
-                        <li>Video Editing (DaVinci Resolve)</li>
-                        <li>Projectors, LED Walls, Mixing Consoles</li>
-                        <li>Microphones, Speaker Systems, ClearCom</li>
-                        <li>Digital Signage, DMX512, GrandMA2</li>
-                        <li>Rigging, Stage Management, Production Support</li>
-                    </ul>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">IT & Networking:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Cisco Switches (VLANs, Putty)</li>
-                        <li>Server Rack Installation</li>
-                        <li>Fiber Optics (Splicing, Installation)</li>
-                        <li>Network Configuration, Wi-Fi Management</li>
-                        <li>Windows Server, Windows OS (Image Creation)</li>
-                        <li>Microsoft Office, IT Support, Hardware Troubleshooting</li>
-                        <li>Cyberpower/APC Systems, CompTIA concepts</li>
-                    </ul>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Certifications:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Microsoft Certified Solutions Associate (MCSA)</li>
-                        <li>CompTIA (Course Completed)</li>
-                    </ul>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Tools & Software:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Putty, DaVinci Resolve, OBS</li>
-                        <li>Microsoft Office Suite, Google Workspace</li>
-                        <li>Various AV control software & Hardware</li>
-                    </ul>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Languages:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Icelandic (Native)</li>
-                        <li>English (C2 Proficient)</li>
-                        <li>Italian (B1)</li>
-                    </ul>
-                </div>
-                <div class="section-block">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Soft Skills:</h3>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Problem-Solving</li>
-                        <li>Adaptability</li>
-                        <li>Team Leadership</li>
-                        <li>Communication</li>
-                        <li>Client/Speaker Relations</li>
-                        <li>Project Coordination</li>
-                        <li>Autonomous Work</li>
-                    </ul>
-                </div>
-            </section>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    Specialista Tecnico altamente qualificato e versatile con oltre 5 anni di esperienza in AV per conferenze,
+                    Operazioni di Data Center e Supporto IT, unito a esperienza in networking, streaming e
+                    coordinamento di progetti tecnici. Cerco di sfruttare l'esperienza e le capacità tecniche in un ruolo dinamico
+                    nel settore eventi o IT di Milano.
+                </p>
+            </header>
 
-            <!-- Experience & Education Sections -->
-            <section class="md:col-span-2">
-                <!-- Experience Section -->
-                <h2 class="text-2xl font-bold mb-4">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.586l-1.707 1.707A2 2 0 0115 15.586V18a2 2 0 01-2 2H7a2 2 0 01-2-2v-2.414A2 2 0 014.293 13.707L2.586 12V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm-4 0a1 1 0 011-1h.01a1 1 0 110 2H6a1 1 0 01-1-1zm9-1a1 1 0 00-1 1v.01a1 1 0 102 0V9a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                    Experience
-                </h2>
-                <div class="mb-8 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Event Production (IT, AV, Production Lead)</h3>
-                    <p class="text-gray-600"><strong>Harpa Concert Hall and Conference Center</strong> | Reykjavík, Iceland</p>
-                    <p class="text-sm text-gray-500 mb-4">March 2022 – Present</p>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                        <li><strong>Conference AV & IT Support:</strong> Provided end-to-end technical support for numerous high-profile international conferences (e.g., European Glaucoma Society, Nordic Public Health, Wellbeing Economy Forum), ensuring flawless execution of presentations, audio, and video.</li>
-                        <li>Optimized speaker presentations by troubleshooting technical issues, adjusting video formats, and reducing bitrates, ensuring smooth transitions and professional delivery.</li>
-                        <li>Configured and maintained Cisco switches via Putty, managing VLANs and ensuring robust network performance across the venue.</li>
-                        <li>Installed and managed Cyberpower APC emergency battery power units in server racks.</li>
-                        <li>Established and managed Wi-Fi networks within the venue using the Cisco system.</li>
-                        <li><strong>Live Stream & Video Production:</strong> Managed live streaming for key events (e.g., Loftslagsdagurinn, PHD Dissertation Defense), operating four Sony PTZ cameras via remote control and utilizing OBS/Livestream platforms.</li>
-                        <li>Produced and edited high-quality video content for website publishing using DaVinci Resolve, including conference sessions, meetings, and forums.</li>
-                        <li><strong>Light & Stage Technician / Production Manager:</strong> Rigged, connected, and patched lighting systems into GrandMA2 light tables, ensuring correct DMX settings and electrical configurations for concerts and conferences.</li>
-                        <li>Oversaw stage setups and technical changeovers for major events (e.g., European Film Awards, European Council Summit, Passenger Concert), leading teams and ensuring strict adherence to production schedules.</li>
-                        <li>Administered Windows Server for user and group management, including secure password handling.</li>
-                        <li>Setup and maintained computers for staff, installing office, getting staff into the right groups. This included both Macs and Windows Computers.</li>
-                    </ul>
-                </div>
+            <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skills Section - Italian -->
+                <section class="md:col-span-1">
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.16-1.47-1.16-1.85 0L9.44 5.37a1.532 1.532 0 01-2.286.948l-2.6-1.624a1 1 0 00-1.232.173l-.934.934a1 1 0 00-.173 1.232l1.624 2.6c.214.342-.086.782-.445.948L3.17 11.49c-1.16.38-1.16 1.47 0 1.85l2.21 1.054a1.532 1.532 0 01-.948 2.286l-1.624 2.6a1 1 0 00.173 1.232l.934.934a1 1 0 001.232.173l2.6-1.624a1.532 1.532 0 01.948-.445l1.054 2.21c.38 1.16 1.47 1.16 1.85 0l1.054-2.21a1.532 1.532 0 012.286-.948l2.6 1.624a1 1 0 001.232-.173l.934-.934a1 1 0 00.173-1.232l-1.624-2.6a1.532 1.532 0 01.445-.948l2.21-1.054c1.16-.38 1.16-1.47 0-1.85l-2.21-1.054a1.532 1.532 0 01-.445-.948l1.624-2.6a1 1 0 00-.173-1.232l-.934-.934a1 1 0 00-1.232-.173l-2.6 1.624a1.532 1.532 0 01-.948-.445L11.49 3.17zM10 11a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        Competenze
+                    </h2>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Tecnologia per Eventi & AV:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Setup e Operazione Conferenze</li>
+                            <li>Live Streaming (OBS, Livestream Platform)</li>
+                            <li>Montaggio Video (DaVinci Resolve)</li>
+                            <li>Proiettori, LED Walls, Console di Mixaggio</li>
+                            <li>Microfoni, Sistemi di Altoparlanti, ClearCom</li>
+                            <li>Digital Signage, DMX512, GrandMA2</li>
+                            <li>Rigging, Gestione del Palco, Supporto alla Produzione</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">IT & Networking:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Switch Cisco (VLAN, Putty)</li>
+                            <li>Installazione Rack Server</li>
+                            <li>Fibre Ottiche (Giunzione, Installazione)</li>
+                            <li>Configurazione Rete, Gestione Wi-Fi</li>
+                            <li>Windows Server, Windows OS (Creazione Immagini)</li>
+                            <li>Microsoft Office, Supporto IT, Risoluzione Problemi Hardware</li>
+                            <li>Sistemi Cyberpower/APC, Concetti CompTIA</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Certificazioni:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Microsoft Certified Solutions Associate (MCSA)</li>
+                            <li>CompTIA (Corso Completato)</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Strumenti & Software:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Putty, DaVinci Resolve, OBS</li>
+                            <li>Microsoft Office Suite, Google Workspace</li>
+                            <li>Vari software e hardware di controllo AV</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Lingue:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Islandese (Madrelingua)</li>
+                            <li>Inglese (C2 Padronanza)</li>
+                            <li>Italiano (B1)</li>
+                        </ul>
+                    </div>
+                    <div class="section-block">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Soft Skills:</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Risoluzione Problemi</li>
+                            <li>Adattabilità</li>
+                            <li>Leadership di Team</li>
+                            <li>Comunicazione</li>
+                            <li>Relazioni con Clienti/Relatori</li>
+                            <li>Coordinamento Progetti</li>
+                            <li>Lavoro Autonomo</li>
+                        </ul>
+                    </div>
+                </section>
 
-                <div class="mb-8 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Optical Fiber Installation Specialist</h3>
-                    <p class="text-gray-600"><strong>Raflausnir</strong> | Reykjavík, Iceland</p>
-                    <p class="text-sm text-gray-500 mb-4">2017 – 2018</p>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                        <li>Installed and configured optical fiber connections for residential and commercial buildings throughout Reykjavík.</li>
-                        <li>Performed precise fiber splicing, integrated fiber converters, and set up routers/TV converter boxes, ensuring full functionality and high-speed connectivity.</li>
-                        <li>Conducted quality checks and troubleshooting to guarantee reliable service delivery.</li>
-                    </ul>
-                </div>
+                <!-- Experience & Education Sections - Italian -->
+                <section class="md:col-span-2">
+                    <!-- Experience Section - Italian -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.586l-1.707 1.707A2 2 0 0115 15.586V18a2 2 0 01-2 2H7a2 2 0 01-2-2v-2.414A2 2 0 014.293 13.707L2.586 12V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm-4 0a1 1 0 011-1h.01a1 1 0 110 2H6a1 1 0 01-1-1zm9-1a1 1 0 00-1 1v.01a1 1 0 102 0V9a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                        Esperienza
+                    </h2>
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Produzione Eventi (IT, AV, Responsabile Produzione)</h3>
+                        <p class="text-gray-600"><strong>Harpa Concert Hall and Conference Center</strong> | Reykjavík, Islanda</p>
+                        <p class="text-sm text-gray-500 mb-4">Marzo 2022 – Attuale</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li><strong>Supporto AV e IT per Conferenze:</strong> Fornito supporto tecnico completo per numerose conferenze internazionali di alto profilo (es. European Glaucoma Society, Nordic Public Health, Wellbeing Economy Forum), garantendo l'esecuzione impeccabile di presentazioni, audio e video.</li>
+                            <li>Ottimizzato le presentazioni dei relatori risolvendo problemi tecnici, adattando i formati video e riducendo i bitrate, garantendo transizioni fluide e una consegna professionale.</li>
+                            <li>Configurato e mantenuto gli switch Cisco tramite Putty, gestendo le VLAN e garantendo prestazioni di rete robuste in tutta la sede.</li>
+                            <li>Installato e gestito le unità di alimentazione di emergenza a batteria Cyberpower APC nei rack server.</li>
+                            <li>Stabilito e gestito le reti Wi-Fi all'interno della sede utilizzando il sistema Cisco.</li>
+                            <li><strong>Produzione Live Stream & Video:</strong> Gestito il live streaming per eventi chiave (es. Loftslagsdagurinn, PHD Dissertation Defense), operando quattro telecamere Sony PTZ tramite controllo remoto e utilizzando piattaforme OBS/Livestream.</li>
+                            <li>Prodotto e montato contenuti video di alta qualità per la pubblicazione sul sito web utilizzando DaVinci Resolve, incluse sessioni di conferenze, riunioni e forum.</li>
+                            <li><strong>Tecnico Luci & Palco / Responsabile Produzione:</strong> Allestito, collegato e patchato i sistemi di illuminazione nelle consolle luci GrandMA2, garantendo le corrette impostazioni DMX e configurazioni elettriche per concerti e conferenze.</li>
+                            <li>Supervisionato gli allestimenti del palco e i cambi tecnici per eventi importanti (es. European Film Awards, European Council Summit, Passenger Concert), guidando i team e garantendo la stretta aderenza ai programmi di produzione.</li>
+                            <li>Amministrato Windows Server per la gestione di utenti e gruppi, inclusa la gestione sicura delle password.</li>
+                            <li>Setup e mantenuto i computer per il personale, installando Office, inserendo il personale nei gruppi corretti. Questo includeva sia Mac che computer Windows.</li>
+                        </ul>
+                    </div>
 
-                <div class="mb-8 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Technical Support Specialist</h3>
-                    <p class="text-gray-600"><strong>Tal</strong> | Reykjavík, Iceland</p>
-                    <p class="text-sm text-gray-500 mb-4">2010 – 2011</p>
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                        <li>Provided direct technical assistance to customers, resolving issues related to phone and internet services.</li>
-                        <li>Configured APN settings for various mobile platforms and troubleshoot router and Voice over IP (VoIP) problems.</li>
-                    </ul>
-                </div>
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Specialista in Installazione Fibre Ottiche</h3>
+                        <p class="text-gray-600"><strong>Raflausnir</strong> | Reykjavík, Islanda</p>
+                        <p class="text-sm text-gray-500 mb-4">2017 – 2018</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li>Installato e configurato connessioni in fibra ottica per edifici residenziali e commerciali in tutta Reykjavík.</li>
+                            <li>Eseguito giunzioni precise della fibra, integrato convertitori di fibra e configurato router/decoder TV, garantendo piena funzionalità e connettività ad alta velocità.</li>
+                            <li>Effettuato controlli di qualità e risoluzione dei problemi per garantire un'erogazione del servizio affidabile.</li>
+                        </ul>
+                    </div>
 
-                <!-- Education & Certifications Section -->
-                <h2 class="text-2xl font-bold mb-4">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.394 2.08a1 1 0 00-.788 0L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08zM4.232 7.382l-.443.15-.353-.615-.436-.148.353-.615-.443-.15a.999.999 0 00-1.755.004L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" fill-rule="evenodd" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" clip-rule="evenodd"></path></svg>
-                    Education & Certifications
-                </h2>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Microsoft Certified Solutions Associate (MCSA)</h3>
-                    <p class="text-gray-600"><strong>NTV</strong> | Reykjavík, Iceland</p>
-                    <p class="text-sm text-gray-500">November 2015</p>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Cinematography and Video Editing</h3>
-                    <p class="text-gray-600"><strong>Kvikmyndaskóli Íslands</strong> | Reykjavík, Iceland</p>
-                    <p class="text-sm text-gray-500">2008 – 2009</p>
-                </div>
-                <div class="mb-6 section-block">
-                    <h3 class="text-xl font-semibold text-gray-900">Italian Language Course</h3>
-                    <p class="text-gray-600"><strong>ELLCI Milano Italian Language School</strong> | Milan, Italy</p>
-                    <p class="text-sm text-gray-500">February 2025 - December 2025</p>
-                </div>
+                    <div class="mb-8 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Specialista di Supporto Tecnico</h3>
+                        <p class="text-gray-600"><strong>Tal</strong> | Reykjavík, Islanda</p>
+                        <p class="text-sm text-gray-500 mb-4">2010 – 2011</p>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                            <li>Fornito assistenza tecnica diretta ai clienti, risolvendo problemi relativi ai servizi telefonici e internet.</li>
+                            <li>Configurato le impostazioni APN per varie piattaforme mobili e risolto problemi di router e Voice over IP (VoIP).</li>
+                        </ul>
+                    </div>
 
-                <!-- Interests Section -->
-                <h2 class="text-2xl font-bold mb-4">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"></path></svg>
-                    Interests
-                </h2>
-                <div class="section-block">
-                    <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
-                        <li>Computer Building</li>
-                        <li>Video Editing</li>
-                        <li>Hiking</li>
-                        <li>Reading</li>
-                        <li>Indoor Climbing</li>
-                        <li>Technology</li>
-                        <li>AI</li>
-                        <li>Stock Market</li>
-                        <li>Football</li>
-                    </ul>
-                </div>
-            </section>
-        </main>
-        <!-- Optional: Add a call to action or footer -->
-        <footer class="text-center mt-12 pt-8 border-t-2 border-gray-300">
-            <p class="text-gray-600">Looking for a dynamic role in Milan's event or IT sector.</p>
-            <a href="mailto:gudn3h@gmail.com" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
-                Contact Me
-            </a>
-        </footer>
+                    <!-- Education & Certifications Section - Italian -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.394 2.08a1 1 0 00-.788 0L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08zM4.232 7.382l-.443.15-.353-.615-.436-.148.353-.615-.443-.15a.999.999 0 00-1.755.004L.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" fill-rule="evenodd" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M.242 5.097a.999.999 0 00-.004 1.755l9.963 3.595 9.963-3.595a.999.999 0 00-.004-1.755L10.394 2.08a1 1 0 00-.788 0z" clip-rule="evenodd"></path></svg>
+                        Istruzione e Certificazioni
+                    </h2>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Microsoft Certified Solutions Associate (MCSA)</h3>
+                        <p class="text-gray-600"><strong>NTV</strong> | Reykjavík, Islanda</p>
+                        <p class="text-sm text-gray-500">Novembre 2015</p>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Cinematografia e Montaggio Video</h3>
+                        <p class="text-gray-600"><strong>Kvikmyndaskóli Íslands</strong> | Reykjavík, Islanda</p>
+                        <p class="text-sm text-gray-500">2008 – 2009</p>
+                    </div>
+                    <div class="mb-6 section-block">
+                        <h3 class="text-xl font-semibold text-gray-900">Corso di Lingua Italiana</h3>
+                        <p class="text-gray-600"><strong>ELLCI Milano Italian Language School</strong> | Milano, Italia</p>
+                        <p class="text-sm text-gray-500">Febbraio 2025 - Dicembre 2025</p>
+                    </div>
+
+                    <!-- Interests Section - Italian -->
+                    <h2 class="text-2xl font-bold mb-4">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"></path></svg>
+                        Interessi
+                    </h2>
+                    <div class="section-block">
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+                            <li>Costruzione di Computer</li>
+                            <li>Montaggio Video</li>
+                            <li>Escursionismo</li>
+                            <li>Lettura</li>
+                            <li>Arrampicata Indoor</li>
+                            <li>Tecnologia</li>
+                            <li>IA</li>
+                            <li>Mercato Azionario</li>
+                            <li>Calcio</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+            <footer class="text-center mt-12 pt-8 border-t-2 border-gray-300">
+                <p class="text-gray-600">Cerco un ruolo dinamico nel settore eventi o IT di Milano.</p>
+                <a href="mailto:gudn3h@gmail.com" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                    Contattami
+                </a>
+            </footer>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const englishContent = document.getElementById('english-content');
+            const italianContent = document.getElementById('italian-content');
+            const langEnButton = document.getElementById('lang-en');
+            const langItButton = document.getElementById('lang-it');
+
+            // Function to set active language
+            function setActiveLanguage(lang) {
+                if (lang === 'en') {
+                    englishContent.classList.add('active');
+                    italianContent.classList.remove('active');
+                    langEnButton.classList.add('bg-blue-600');
+                    langEnButton.classList.remove('bg-gray-400');
+                    langItButton.classList.add('bg-gray-400');
+                    langItButton.classList.remove('bg-blue-600');
+                } else if (lang === 'it') {
+                    italianContent.classList.add('active');
+                    englishContent.classList.remove('active');
+                    langItButton.classList.add('bg-blue-600');
+                    langItButton.classList.remove('bg-gray-400');
+                    langEnButton.classList.add('bg-gray-400');
+                    langEnButton.classList.remove('bg-blue-600');
+                }
+            }
+
+            // Event listeners for buttons
+            langEnButton.addEventListener('click', () => setActiveLanguage('en'));
+            langItButton.addEventListener('click', () => setActiveLanguage('it'));
+
+            // Set initial language (English by default)
+            setActiveLanguage('en');
+        });
+    </script>
 </body>
 </html>
